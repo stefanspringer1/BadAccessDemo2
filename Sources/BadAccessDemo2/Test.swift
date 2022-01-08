@@ -17,7 +17,11 @@ struct Test {
             "\(packagePath)/test2.xml",
         ]
         
-        await paths.forEachAsyncThrowing { path in // (forEachAsyncThrowing defined below; same result without it)
+        // UPDATE: removed the usage of forEachAsyncThrowing defined at the end,
+        //         so it is clear that the problem does not come from there:
+        let path = "\(packagePath)/test2.xml"
+        
+        //await paths.forEachAsyncThrowing { path in // (forEachAsyncThrowing defined below; same result without it)
         
             // OK in both cases:
             await inner(path: path, i: 1)
@@ -40,7 +44,7 @@ struct Test {
             } else {
                 print("wrong OS version")
             }
-        }
+        //}
     }
 }
 
